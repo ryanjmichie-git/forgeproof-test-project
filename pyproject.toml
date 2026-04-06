@@ -1,0 +1,11 @@
+[project]
+name = "taskflow"
+version = "0.1.0"
+description = "A simple task management library for testing ForgeProof"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
