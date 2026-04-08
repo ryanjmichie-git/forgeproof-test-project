@@ -88,3 +88,52 @@ def test_filter_due_before():
     assert len(results) == 2
     titles = {t.title for _, t in results}
     assert titles == {"Early", "Mid"}
+
+
+def test_search_by_title():
+    store = TaskStore()
+    store.add(Task(title="Buy groceries"))
+    store.add(Task(title="Write report"))
+    store.add(Task(title="Buy birthday gift"))
+    results = store.search("buy")
+    assert len(results) == 2
+    titles = {t.title for _, t in results}
+    assert titles == {"Buy groceries", "Buy birthday gift"}
+
+
+def test_search_case_insensitive():
+    store = TaskStore()
+    store.add(Task(title="Deploy API"))
+    assert len(store.search("deploy")) == 1
+    assert len(store.search("DEPLOY")) == 1
+    assert len(store.search("Deploy")) == 1
+
+
+def test_search_no_match():
+    store = TaskStore()
+    store.add(Task(title="Buy groceries"))
+    assert store.search("report") == []
+
+
+def test_search_empty_query():
+    store = TaskStore()
+    store.add(Task(title="A"))
+    store.add(Task(title="B"))
+    results = store.search("")
+    assert len(results) == 2
+
+
+def test_filter_by_tag():
+    store = TaskStore()
+    store.add(Task(title="Tagged", tags=["urgent", "home"]))
+    store.add(Task(title="Other", tags=["work"]))
+    store.add(Task(title="No tags"))
+    results = store.filter_by_tag("urgent")
+    assert len(results) == 1
+    assert results[0][1].title == "Tagged"
+
+
+def test_filter_by_tag_no_match():
+    store = TaskStore()
+    store.add(Task(title="Task", tags=["work"]))
+    assert store.filter_by_tag("home") == []

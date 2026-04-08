@@ -1,0 +1,118 @@
+[
+  {
+    "index": 0,
+    "timestamp": "2026-04-08T05:03:27.847531+00:00",
+    "action": "genesis",
+    "data": {
+      "issue": 3,
+      "title": "Add task search functionality",
+      "requirements": [
+        "REQ-1: Add TaskStore.search(query) that returns tasks whose title contains the query string (case-insensitive substring match)",
+        "REQ-2: Add TaskStore.filter_by_tag(tag) that returns tasks containing a matching tag",
+        "REQ-3: Add tests for both methods including edge cases"
+      ]
+    },
+    "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "375b5dd957ebffc1c21bb24f231c34774f2f1646cee39c48fe7bbd7a663ab1e2",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgbh6v11y+pvcm2V8oIJnAunizWf\nZ2lO9QlyUwUdfym9UAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAECdeJfboeXTUbr4ujQ1K1j9eduZx5huzFf93e7GAaAgKFm7mbKNMPj5K3\nA/Ld5YA4lquc7Z1xTuGk+nd/1SuRIM\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 1,
+    "timestamp": "2026-04-08T05:06:47.961796+00:00",
+    "action": "branch-create",
+    "data": {
+      "branch": "forgeproof/3",
+      "base": "main",
+      "base_sha": "b93fbfbb40ce08868250565b306b9bc7e9395791"
+    },
+    "prev_hash": "375b5dd957ebffc1c21bb24f231c34774f2f1646cee39c48fe7bbd7a663ab1e2",
+    "hash": "82e4316c0172742a72d32e97feaa5bb3924cf978f87b7ef86be1c4e18d766452",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgbh6v11y+pvcm2V8oIJnAunizWf\nZ2lO9QlyUwUdfym9UAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEAFRh0Nd3HhMDkcfEijCBxO+d3+tUWO00f1xMknLhwmFqv8uT5J2ygY3u\nbXO0zw5/Z5e6dXdw2p+V8g4TViJlgK\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 2,
+    "timestamp": "2026-04-08T05:08:25.198742+00:00",
+    "action": "file-edit",
+    "data": {
+      "path": "src/task_store.py",
+      "operation": "modify",
+      "sha256": "8a1164e01689369f152aa3c1cd823b876d7f4c87b13a106303d6b672b5066cb9"
+    },
+    "prev_hash": "82e4316c0172742a72d32e97feaa5bb3924cf978f87b7ef86be1c4e18d766452",
+    "hash": "0294678ca3559399a28aecd959eef71a36a850040a4231677ae41a1a2530fbdf",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgbh6v11y+pvcm2V8oIJnAunizWf\nZ2lO9QlyUwUdfym9UAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEC2YEqRqhQr9IUhaAi4hJamWoEF+QoAauwTm+WeQU1T9uz7j/gr+zJuv4\nUdIxtIZeo5BuMNhLFk4pC7ZEp/B4UP\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 3,
+    "timestamp": "2026-04-08T05:13:14.830915+00:00",
+    "action": "decision",
+    "data": {
+      "context": "Whether search() should match title only or also description",
+      "choice": "Title only",
+      "rationale": "The issue specifically mentions searching by title. Description search can be added later if needed. Keeps the API simple and focused."
+    },
+    "prev_hash": "0294678ca3559399a28aecd959eef71a36a850040a4231677ae41a1a2530fbdf",
+    "hash": "db381e72d4090e512fc720e8ab6d96390c5b493a292d24005778ee08000f8260",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgbh6v11y+pvcm2V8oIJnAunizWf\nZ2lO9QlyUwUdfym9UAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEDTK1xq9lvPWX0IejY6XXvpqbTYDMWTyPyPxWKj+XlVAogjTaU1v916Tw\niVgcZlIB6hHZlqBxvZUC63yLGE3oUJ\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 4,
+    "timestamp": "2026-04-08T05:14:47.934606+00:00",
+    "action": "file-edit",
+    "data": {
+      "path": "tests/test_store.py",
+      "operation": "modify",
+      "sha256": "5f02bf3d1bd610ea5fabacb353b283c85fab251e8505ce8fa9e3fd1aa4743b63"
+    },
+    "prev_hash": "db381e72d4090e512fc720e8ab6d96390c5b493a292d24005778ee08000f8260",
+    "hash": "ade0fc6af3d604bc055fb81bc1e0ef19ce5157c70e067c47a3157ddba8d7d271",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgbh6v11y+pvcm2V8oIJnAunizWf\nZ2lO9QlyUwUdfym9UAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAECnaNTaHryGjTXJFMzXEjh5q/lVrMyHLV/DK9rtyOH/TCnfMjivHR8fmB\njpLtosFCCh/WACyZGS/tNNT60lyxwP\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 5,
+    "timestamp": "2026-04-08T05:15:02.527017+00:00",
+    "action": "test-result",
+    "data": {
+      "suite": "pytest",
+      "passed": 17,
+      "failed": 0,
+      "coverage": {
+        "REQ-1": [
+          "test_search_by_title",
+          "test_search_case_insensitive",
+          "test_search_no_match",
+          "test_search_empty_query"
+        ],
+        "REQ-2": [
+          "test_filter_by_tag",
+          "test_filter_by_tag_no_match"
+        ],
+        "REQ-3": [
+          "test_search_by_title",
+          "test_search_case_insensitive",
+          "test_search_no_match",
+          "test_search_empty_query",
+          "test_filter_by_tag",
+          "test_filter_by_tag_no_match"
+        ]
+      },
+      "failed_tests": []
+    },
+    "prev_hash": "ade0fc6af3d604bc055fb81bc1e0ef19ce5157c70e067c47a3157ddba8d7d271",
+    "hash": "3d32cab3e7cc33721cc3a270ef752cdc514ff3b9508fb1a2ba0e3629ded28721",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgbh6v11y+pvcm2V8oIJnAunizWf\nZ2lO9QlyUwUdfym9UAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEDtGOSwO9awL03Yn5e+KxzWp1E+rAgLdqoBeLjogWaoHQG+d1wlnzyfNx\nyMQYkGaPBzKQaTtUoxg6QbFbNZclED\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 6,
+    "timestamp": "2026-04-08T05:15:04.803645+00:00",
+    "action": "lint-result",
+    "data": {
+      "tool": "ruff",
+      "errors": 0,
+      "warnings": 0
+    },
+    "prev_hash": "3d32cab3e7cc33721cc3a270ef752cdc514ff3b9508fb1a2ba0e3629ded28721",
+    "hash": "2d787ed27c48df41bf37658cbedc77069729cae3e15b95f68168e37c55c1d521",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgbh6v11y+pvcm2V8oIJnAunizWf\nZ2lO9QlyUwUdfym9UAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEBiE43QpJG11EvFRlT3L2zhTXg6YDuX8S0UxeRIemnn+cfSB+3NwlgR8Z\nYLL+evGvItqWmqLuUTXSuw0OaHM9EO\n-----END SSH SIGNATURE-----"
+  }
+]
