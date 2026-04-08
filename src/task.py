@@ -32,7 +32,9 @@ class Task:
     completed_at: datetime | None = None
 
     def complete(self) -> None:
-        """Mark the task as done."""
+        """Mark the task as done. No-op if already done."""
+        if self.status == Status.DONE:
+            return
         self.status = Status.DONE
         self.completed_at = datetime.now(timezone.utc)
 
