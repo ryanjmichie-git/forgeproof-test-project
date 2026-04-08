@@ -58,3 +58,14 @@ def test_complete_from_in_progress():
     task.complete()
     assert task.status == Status.DONE
     assert task.completed_at is not None
+
+
+def test_task_due_date_default():
+    task = Task(title="No due date")
+    assert task.due_date is None
+
+
+def test_task_due_date_set():
+    due = datetime(2026, 12, 31, tzinfo=timezone.utc)
+    task = Task(title="With due date", due_date=due)
+    assert task.due_date == due

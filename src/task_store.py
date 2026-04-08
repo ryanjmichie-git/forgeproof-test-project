@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
+
 from .task import Priority, Status, Task
 
 
@@ -41,3 +43,20 @@ class TaskStore:
     def filter_by_priority(self, priority: Priority) -> list[tuple[int, Task]]:
         """Return tasks matching a given priority."""
         return [(tid, t) for tid, t in self._tasks.items() if t.priority == priority]
+
+    def filter_overdue(self) -> list[tuple[int, Task]]:
+        """Return tasks past their due date that are not done."""
+        now = datetime.now(timezone.utc)
+        return [
+            (tid, t)
+            for tid, t in self._tasks.items()
+            if t.due_date is not None and t.due_date < now and t.status != Status.DONE
+        ]
+
+    def filter_due_before(self, date: datetime) -> list[tuple[int, Task]]:
+        """Return tasks with a due date before the given date."""
+        return [
+            (tid, t)
+            for tid, t in self._tasks.items()
+            if t.due_date is not None and t.due_date < date
+        ]

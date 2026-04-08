@@ -1,0 +1,145 @@
+[
+  {
+    "index": 0,
+    "timestamp": "2026-04-08T04:36:45.850314+00:00",
+    "action": "genesis",
+    "data": {
+      "issue": 2,
+      "title": "Feature: Add due dates and overdue filtering to TaskStore",
+      "requirements": [
+        "REQ-1: Add an optional due_date: datetime | None field to Task (default: None)",
+        "REQ-2: Add TaskStore.filter_overdue() method that returns tasks past their due date that are not done",
+        "REQ-3: Add TaskStore.filter_due_before(date) method that returns tasks due before a given date",
+        "REQ-4: Add tests for all new functionality"
+      ]
+    },
+    "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "61d4801a80c405dadf5cd0e21ee81d8d3e7b2a0687909f045b27138f22f8d3ae",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgz36wM5RikQ0I8Im35ZgOqFBwEb\nvtWImwjIYRQlM1yDUAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAECFTQaHG0SZpmVy+/hMn7wiONZcShDcPlyjgLIWsr4o5TyUB3xTUtYW8F\nS6mPazdVOmx2vP5BOSy8MpnJWeNkMI\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 1,
+    "timestamp": "2026-04-08T04:37:19.124498+00:00",
+    "action": "branch-create",
+    "data": {
+      "branch": "forgeproof/2",
+      "base": "main",
+      "base_sha": "b93fbfbb40ce08868250565b306b9bc7e9395791"
+    },
+    "prev_hash": "61d4801a80c405dadf5cd0e21ee81d8d3e7b2a0687909f045b27138f22f8d3ae",
+    "hash": "a8f54b5306160fe52f7026c0f6c47a38b56689e3fcc4b406380e38aecc28decf",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgz36wM5RikQ0I8Im35ZgOqFBwEb\nvtWImwjIYRQlM1yDUAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAED4gPwYihhSXKzIngFiUIC7WYVuWdvxaiNwsUpOU3C0WXHszjDnJeXKfK\nrLFD1fxJk222rfoOB6rWIkqMV57tgJ\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 2,
+    "timestamp": "2026-04-08T04:37:46.531266+00:00",
+    "action": "file-edit",
+    "data": {
+      "path": "src/task.py",
+      "operation": "modify",
+      "sha256": "1f311cb0a3c2656254500e8e8ac8d1a99fb373c4e7249e3cc2fa057a09a876b2"
+    },
+    "prev_hash": "a8f54b5306160fe52f7026c0f6c47a38b56689e3fcc4b406380e38aecc28decf",
+    "hash": "89996c32f6efaecaedf6f1769b6567413bf6069cbe725daaea59a0e2d0bb9898",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgz36wM5RikQ0I8Im35ZgOqFBwEb\nvtWImwjIYRQlM1yDUAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEBtuSlqeQjLE9z2UpFrbYj/B8fMcRArB7psLz56SsmLegyU3jWbocuHdJ\nKR4Q/11X0E9wGsIPyOGlGDAhOGSa0O\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 3,
+    "timestamp": "2026-04-08T04:38:53.068905+00:00",
+    "action": "file-edit",
+    "data": {
+      "path": "src/task_store.py",
+      "operation": "modify",
+      "sha256": "0c79373855bf393db1a0b07bf30531fb79f5953ebdfb8d877e97243562e5a132"
+    },
+    "prev_hash": "89996c32f6efaecaedf6f1769b6567413bf6069cbe725daaea59a0e2d0bb9898",
+    "hash": "2e037527f0f39bf85f93c55ae791d3017ee3a1014d43e3a8c8c25dd30f9ee18f",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgz36wM5RikQ0I8Im35ZgOqFBwEb\nvtWImwjIYRQlM1yDUAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEDNfkV5+YMA50V5X/r8sfeVO42VppLzMKH7TYhZKBxHs8c2B8RZH43ELT\nv1XwyZKagEz4Y0ZAKmHBL4TBV0R5gC\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 4,
+    "timestamp": "2026-04-08T04:38:54.930495+00:00",
+    "action": "decision",
+    "data": {
+      "context": "Whether filter_overdue should use Task.is_overdue() or compare due_date directly",
+      "choice": "Compare due_date directly in the store method",
+      "rationale": "is_overdue(deadline) takes an explicit deadline parameter, not the task own due_date. Using due_date directly is clearer and avoids coupling the store filter to a method designed for a different use case."
+    },
+    "prev_hash": "2e037527f0f39bf85f93c55ae791d3017ee3a1014d43e3a8c8c25dd30f9ee18f",
+    "hash": "8f72c406cc7e71322cdcd4ff5c1b525f6c51a1587a96a361d13ea959212aed9a",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgz36wM5RikQ0I8Im35ZgOqFBwEb\nvtWImwjIYRQlM1yDUAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAED95qWrgETPJTXba72DAbH4I9dUsNrMfwcGy5olJXInGqAui0x8IaKXWv\nraL20QFaIpvE7v9dlfgdblu++qyPcN\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 5,
+    "timestamp": "2026-04-08T04:39:17.158249+00:00",
+    "action": "file-edit",
+    "data": {
+      "path": "tests/test_task.py",
+      "operation": "modify",
+      "sha256": "93120fcbe0de2967cd0cdd859cfd01d77f3320398a24f94bbd7d050ea22d2085"
+    },
+    "prev_hash": "8f72c406cc7e71322cdcd4ff5c1b525f6c51a1587a96a361d13ea959212aed9a",
+    "hash": "07d799a90e6f0fd142435c2ea900491e87e74b2f357c8cf9c1b20f3ad0417c65",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgz36wM5RikQ0I8Im35ZgOqFBwEb\nvtWImwjIYRQlM1yDUAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEAf/hBvEPK9dhnW5iLs9zReGrRRt0IR1wAHjjW+ous/HHIektbnkMq5sK\nIZxUWRH7oBzMcvG/D1sriHUvFJ5fcG\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 6,
+    "timestamp": "2026-04-08T04:40:01.405915+00:00",
+    "action": "file-edit",
+    "data": {
+      "path": "tests/test_store.py",
+      "operation": "modify",
+      "sha256": "9bb1f37b3ac9de9fc6766073da7f92bdbf7acbd2464ca50628371ca50fc3b5e1"
+    },
+    "prev_hash": "07d799a90e6f0fd142435c2ea900491e87e74b2f357c8cf9c1b20f3ad0417c65",
+    "hash": "0c2e323a81a22b31f98897f9e464784d52cdf8b7294b4978802bc78815c64756",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgz36wM5RikQ0I8Im35ZgOqFBwEb\nvtWImwjIYRQlM1yDUAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEAm1O70sDH3FHlF+yDelJHPTuRYwOvX9ShdolFU52oqP7mLjjxit2w8Fs\nAitII87d65zPdeojZqVlDIrNW1SjcA\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 7,
+    "timestamp": "2026-04-08T04:40:32.556474+00:00",
+    "action": "test-result",
+    "data": {
+      "suite": "pytest",
+      "passed": 16,
+      "failed": 0,
+      "coverage": {
+        "REQ-1": [
+          "test_task_due_date_default",
+          "test_task_due_date_set"
+        ],
+        "REQ-2": [
+          "test_filter_overdue",
+          "test_filter_overdue_empty"
+        ],
+        "REQ-3": [
+          "test_filter_due_before"
+        ],
+        "REQ-4": [
+          "test_task_due_date_default",
+          "test_task_due_date_set",
+          "test_filter_overdue",
+          "test_filter_overdue_empty",
+          "test_filter_due_before"
+        ]
+      },
+      "failed_tests": []
+    },
+    "prev_hash": "0c2e323a81a22b31f98897f9e464784d52cdf8b7294b4978802bc78815c64756",
+    "hash": "b4da97d49ce6e6f189f5646000a41236057d1978485c3542967b3626640a1891",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgz36wM5RikQ0I8Im35ZgOqFBwEb\nvtWImwjIYRQlM1yDUAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAECFi8bul1gYNP5jEEDskJPxFDpMvqnTZjTBrEEIpIYrDCWk26N/w0cQz7\nNTkCoz3ysp1gBfBzPBR/eA1P+QgikA\n-----END SSH SIGNATURE-----"
+  },
+  {
+    "index": 8,
+    "timestamp": "2026-04-08T04:40:34.911126+00:00",
+    "action": "lint-result",
+    "data": {
+      "tool": "ruff",
+      "errors": 0,
+      "warnings": 0
+    },
+    "prev_hash": "b4da97d49ce6e6f189f5646000a41236057d1978485c3542967b3626640a1891",
+    "hash": "31a0f4ab7b7878f2bdc34c3a2f3ffbf02d364cb5083217efcd3039020bd171bd",
+    "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgz36wM5RikQ0I8Im35ZgOqFBwEb\nvtWImwjIYRQlM1yDUAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAEDuUU3tq+AxEbjnOOhwfVy291EgNLGEua89qF2zqpQia3Fx/0Bg9VK8Jy\nR3UPWfcVHaHRk7CXiAGs1eC8d0B6sL\n-----END SSH SIGNATURE-----"
+  }
+]
