@@ -60,3 +60,16 @@ class TaskStore:
             for tid, t in self._tasks.items()
             if t.due_date is not None and t.due_date < date
         ]
+
+    def search(self, query: str) -> list[tuple[int, Task]]:
+        """Return tasks whose title contains the query (case-insensitive)."""
+        query_lower = query.lower()
+        return [
+            (tid, t)
+            for tid, t in self._tasks.items()
+            if query_lower in t.title.lower()
+        ]
+
+    def filter_by_tag(self, tag: str) -> list[tuple[int, Task]]:
+        """Return tasks that have the given tag."""
+        return [(tid, t) for tid, t in self._tasks.items() if tag in t.tags]
