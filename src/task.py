@@ -39,6 +39,31 @@ class Task:
         self.status = Status.DONE
         self.completed_at = datetime.now(timezone.utc)
 
+    def to_dict(self) -> dict:
+        """Return a JSON-serializable dictionary of all fields."""
+        return {
+            "title": self.title,
+            "description": self.description,
+            "priority": self.priority.value,
+            "status": self.status.value,
+            "tags": list(self.tags),
+            "created_at": self.created_at.isoformat(),
+            "completed_at": self.completed_at.isoformat() if self.completed_at else None,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> Task:
+        """Reconstruct a Task from a dictionary."""
+        return cls(
+            title=data["title"],
+            description=data.get("description", ""),
+            priority=Priority(data["priority"]),
+            status=Status(data["status"]),
+            tags=list(data.get("tags", [])),
+            created_at=datetime.fromisoformat(data["created_at"]),
+            completed_at=datetime.fromisoformat(data["completed_at"]) if data.get("completed_at") else None,
+        )
+
     def is_overdue(self, deadline: datetime) -> bool:
         """Check if the task is past a given deadline."""
         if self.status == Status.DONE:
