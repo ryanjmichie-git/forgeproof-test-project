@@ -1,0 +1,102 @@
+{
+  "version": "1.0.0",
+  "format": "forgeproof-rpack",
+  "issue": {
+    "number": 4,
+    "title": "Feature: Task serialization to/from JSON",
+    "url": "https://github.com/ryanjmichie-git/forgeproof-test-project/issues/4"
+  },
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Add Task.to_dict() that returns a JSON-serializable dictionary with all fields",
+      "status": "covered",
+      "tests": [
+        "test_to_dict_all_fields",
+        "test_to_dict_json_serializable"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add Task.from_dict(data) class method that reconstructs a Task from a dictionary",
+      "status": "covered",
+      "tests": [
+        "test_from_dict",
+        "test_from_dict_completed_at_none"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Enum fields (priority, status) should serialize as their string values",
+      "status": "covered",
+      "tests": [
+        "test_to_dict_enum_values"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Datetime fields should serialize as ISO 8601 strings",
+      "status": "covered",
+      "tests": [
+        "test_to_dict_completed_at_iso",
+        "test_to_dict_all_fields"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Round-trip property: Task.from_dict(task.to_dict()) should produce an equivalent task",
+      "status": "covered",
+      "tests": [
+        "test_round_trip",
+        "test_round_trip_with_completed"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add comprehensive tests including round-trip property test",
+      "status": "covered",
+      "tests": [
+        "test_to_dict_all_fields",
+        "test_to_dict_enum_values",
+        "test_to_dict_completed_at_iso",
+        "test_to_dict_json_serializable",
+        "test_from_dict",
+        "test_from_dict_completed_at_none",
+        "test_round_trip",
+        "test_round_trip_with_completed"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "src/task.py",
+      "operation": "modify",
+      "sha256": "68895311df63d59fd3c8311fa039b4598a97f02afba01f337290946d1032b42d"
+    },
+    {
+      "path": "tests/test_task.py",
+      "operation": "modify",
+      "sha256": "9e27a81c1ceb67076d8e91681b2a011a081ad7514e122488b948ccd8c04b40f7"
+    }
+  ],
+  "decisions": [
+    {
+      "context": "Whether to use dataclasses.asdict() or manual to_dict()",
+      "choice": "Manual to_dict() with explicit field mapping",
+      "rationale": "dataclasses.asdict() does deep conversion but does not handle enums or datetimes to JSON-serializable formats. Manual approach gives full control over serialization of Priority, Status, and datetime fields as required by REQ-3 and REQ-4."
+    }
+  ],
+  "evaluation": {
+    "status": "pass",
+    "tests_passed": 19,
+    "tests_failed": 0,
+    "lint_errors": 0,
+    "requirement_coverage": "100%",
+    "uncovered_requirements": [],
+    "failed_tests": []
+  },
+  "chain_hash": "f80fe8fd09a9eedff79aec0d971110ef174001b5394e8a9b8e9caf75fc37bb7b",
+  "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTeQureRtcbtQngo2hCe4PBvR34RrdL0OH3OuL3xIKR User@PC-951318",
+  "root_digest": "1365da5bb922ea1778624598c19a626c9bb7a9634fac802e0fae3fa3c0596ab0",
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg5N5C6t5G1xu1CeCjaEJ7g8G9Hf\nhGt0vQ4fc64vfEgpEAAAAKZm9yZ2Vwcm9vZgAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gt\nZWQyNTUxOQAAAECQ0qV5gUuB4Bnl76YxHXJGgvX9KuLW9pVBlyBMm4pQUpEzKA53/sOhPz\nNtIC7pDoo6wQtS/zahZD9gUaOF2mMF\n-----END SSH SIGNATURE-----"
+}

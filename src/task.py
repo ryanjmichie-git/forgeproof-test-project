@@ -30,6 +30,7 @@ class Task:
     tags: list[str] = field(default_factory=list)
     created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     completed_at: datetime | None = None
+    due_date: datetime | None = None
 
     def complete(self) -> None:
         """Mark the task as done. No-op if already done."""
