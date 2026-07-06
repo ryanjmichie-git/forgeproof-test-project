@@ -32,6 +32,23 @@ class Task:
     completed_at: datetime | None = None
     due_date: datetime | None = None
 
+    def __setattr__(self, name: str, value: object) -> None:
+        if name == "priority":
+            if isinstance(value, str):
+                try:
+                    value = Priority(value)
+                except ValueError:
+                    raise ValueError(
+                        f"invalid priority: {value!r}; allowed values are "
+                        f"{', '.join(p.value for p in Priority)}"
+                    ) from None
+            elif not isinstance(value, Priority):
+                raise ValueError(
+                    f"invalid priority: {value!r}; allowed values are "
+                    f"{', '.join(p.value for p in Priority)}"
+                )
+        super().__setattr__(name, value)
+
     def complete(self) -> None:
         """Mark the task as done. No-op if already done."""
         if self.status == Status.DONE:
